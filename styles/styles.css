@@ -11,13 +11,22 @@
  */
 
 :root {
+  /* spring color palette */
+  --color-bloom: #e8285a;
+  --color-bloom-light: #fff0f5;
+  --color-leaf: #5ab460;
+  --color-leaf-light: #edf7ee;
+  --color-sun: #f7c948;
+  --color-sun-light: #fffbe8;
+  --color-sky: #4fc3f7;
+
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --background-color: #fffdf8;
+  --light-color: #fff5eb;
+  --dark-color: #3d1f08;
+  --text-color: #1a0a0a;
+  --link-color: #e8285a;
+  --link-hover-color: #b01a3e;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;

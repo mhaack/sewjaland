@@ -1,0 +1,215 @@
+/* Photo Gallery — Bright spring carousel */
+
+/* ── Single image ─────────────────────────────────────────────── */
+.photo-gallery-single {
+  max-width: 100%;
+}
+
+.photo-gallery-single-image {
+  border-radius: 20px;
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: 0 8px 32px rgb(232 40 90 / 15%);
+}
+
+.photo-gallery-single picture,
+.photo-gallery-single img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Carousel shell ───────────────────────────────────────────── */
+.photo-gallery-carousel {
+  position: relative;
+  background: #fff7f8;
+  border-radius: 20px;
+  overflow: hidden;
+  outline: 3px solid #e8285a;
+  outline-offset: -3px;
+  box-shadow:
+    0 8px 40px rgb(232 40 90 / 14%),
+    0 2px 8px rgb(26 10 10 / 8%);
+}
+
+.photo-gallery-carousel:focus-visible {
+  outline-color: var(--color-leaf);
+  outline-width: 4px;
+}
+
+/* ── Slides ───────────────────────────────────────────────────── */
+.photo-gallery-slides {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #fff7f8;
+}
+
+.photo-gallery-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.photo-gallery-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-gallery-slide picture,
+.photo-gallery-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Navigation arrows ────────────────────────────────────────── */
+.photo-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 56px;
+  background: rgb(255 255 255 / 90%);
+  border: 2px solid #e8285a;
+  border-radius: 8px;
+  color: #e8285a;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+  user-select: none;
+  backdrop-filter: blur(8px);
+}
+
+.photo-gallery-nav:hover {
+  background: #e8285a;
+  color: #fff;
+}
+
+.photo-gallery-nav:active {
+  transform: translateY(-50%) scale(0.93);
+}
+
+.photo-gallery-nav:focus-visible {
+  outline: 3px solid var(--color-leaf);
+  outline-offset: 3px;
+}
+
+.photo-gallery-nav-prev {
+  left: 12px;
+}
+
+.photo-gallery-nav-next {
+  right: 12px;
+}
+
+/* ── Counter ──────────────────────────────────────────────────── */
+.photo-gallery-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: #e8285a;
+  color: #fff;
+  padding: 4px 12px 4px 10px;
+  border-radius: 20px;
+  font-family: var(--heading-font-family);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.photo-gallery-counter em {
+  font-style: normal;
+  font-weight: 400;
+  color: rgb(255 255 255 / 70%);
+}
+
+/* ── Progress bar ─────────────────────────────────────────────── */
+.photo-gallery-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: rgb(232 40 90 / 15%);
+  z-index: 10;
+}
+
+.photo-gallery-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e8285a 0%, #f7c948 60%, #5ab460 100%);
+  border-radius: 0 3px 3px 0;
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+/* ── Tablet ───────────────────────────────────────────────────── */
+@media (width >= 600px) {
+  .photo-gallery-carousel {
+    border-radius: 24px;
+  }
+
+  .photo-gallery-slides {
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo-gallery-nav {
+    width: 48px;
+    height: 68px;
+    font-size: 26px;
+  }
+
+  .photo-gallery-nav-prev {
+    left: 16px;
+  }
+
+  .photo-gallery-nav-next {
+    right: 16px;
+  }
+
+  .photo-gallery-counter {
+    font-size: 17px;
+    padding: 5px 14px 5px 12px;
+    top: 14px;
+    right: 14px;
+  }
+
+  .photo-gallery-progress {
+    height: 6px;
+  }
+}
+
+/* ── Desktop ──────────────────────────────────────────────────── */
+@media (width >= 900px) {
+  .photo-gallery-carousel {
+    border-radius: 20px;
+  }
+
+  .photo-gallery-slides {
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo-gallery-nav {
+    width: 44px;
+    height: 64px;
+    font-size: 24px;
+  }
+}
