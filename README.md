@@ -1,9 +1,8 @@
-# Your Project's Title...
-Your project's description...
+# sewjaland - a personal sewing project tracker
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--sewjaland--mhaack.aem.page/
+- Live: https://main--sewjaland--mhaack.aem.live/
 
 ## Documentation
 
