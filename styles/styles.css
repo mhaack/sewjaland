@@ -136,10 +136,6 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
-}
-
 input,
 textarea,
 select,
@@ -289,13 +285,6 @@ main img {
   width: 100%;
 }
 
-/* sections */
-main > .section {
-  margin: 40px 0;
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-
 main > .section > div {
   max-width: 1200px;
   margin: auto;
@@ -358,6 +347,14 @@ main > .section:first-of-type h1::after {
   margin-bottom: 0;
 }
 
+main > .section .default-content-wrapper h2 {
+  font-size: var(--heading-font-size-xs);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
 .project > main > .section:first-of-type .default-content-wrapper p:last-of-type {
   border-bottom: 1px solid rgb(255 245 235 / 20%);
   padding-bottom: 20px;
@@ -399,13 +396,6 @@ main > .section:first-of-type h1::after {
 
   main > .section .default-content-wrapper h1 {
     font-size: clamp(32px, 4vw, 56px);
-  }
-
-  main > .section .default-content-wrapper h2 {
-    font-size: var(--heading-font-size-xs);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
   }
 
   /* Main becomes the 3-col grid; sections fill named columns */
