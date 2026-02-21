@@ -44,6 +44,26 @@ async function loadFonts() {
 }
 
 /**
+ * Builds a photo-gallery block from loose picture elements on project pages.
+ * @param {Element} main The container element
+ */
+function buildPhotoGallery(main) {
+  if (main.parentElement && main.closest('body.project')) {
+    const pictures = [...main.querySelectorAll('picture')].filter(
+      (pic) => !pic.closest('div[class]'),
+    );
+    if (pictures.length === 0) return;
+
+    const insertBefore = pictures[0].closest('p') || pictures[0];
+    const wrappers = pictures.map((pic) => pic.closest('p')).filter(Boolean);
+
+    const block = buildBlock('project-gallery', pictures.map((pic) => [pic]));
+    insertBefore.before(block);
+    wrappers.forEach((p) => p.remove());
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -68,6 +88,7 @@ function buildAutoBlocks(main) {
     }
 
     buildHeroBlock(main);
+    buildPhotoGallery(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

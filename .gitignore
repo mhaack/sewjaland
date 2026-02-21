@@ -7,7 +7,9 @@ helix-importer-ui
 .DS_Store
 *.bak
 .idea
+.playwright-mcp
 
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+

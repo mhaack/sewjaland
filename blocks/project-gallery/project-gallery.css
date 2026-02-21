@@ -1,0 +1,113 @@
+.project-gallery .carousel-slides-container {
+  position: relative;
+}
+
+.project-gallery .carousel-slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+  max-height: 600px;
+}
+
+.project-gallery .carousel-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.project-gallery .carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  aspect-ratio: 4/5;
+}
+
+.project-gallery .carousel-slide:has(.carousel-slide-content[data-align='center']) {
+  align-items: center;
+}
+
+.project-gallery .carousel-slide:has(.carousel-slide-content[data-align='right']) {
+  align-items: flex-end;
+}
+
+.project-gallery .carousel-slide .carousel-slide-image picture {
+  position: absolute;
+  inset: 0;
+}
+
+.project-gallery .carousel-slide .carousel-slide-image picture > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-gallery .carousel-slide .carousel-slide-image .icon img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) invert(1);
+}
+
+.project-gallery .carousel-slide .carousel-slide-content {
+  z-index: 1;
+  margin: 68px;
+  padding: 16px;
+  color: white;
+  background-color: rgb(19 19 19 / 75%);
+  position: relative;
+  width: var(--slide-content-width, auto);
+}
+
+/* ── Navigation — arrow buttons below image, spread to edges ─── */
+.project-gallery .carousel-navigation-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.project-gallery .slide-prev,
+.project-gallery .slide-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.project-gallery .slide-prev:hover,
+.project-gallery .slide-next:hover,
+.project-gallery .slide-prev:focus-visible,
+.project-gallery .slide-next:focus-visible {
+  background: rgb(255 255 255 / 10%);
+}
+
+.project-gallery .icon {
+  display: flex;
+  width: 32px;
+  height: 32px;
+}
+
+@media (width >= 600px) {
+  .project-gallery .carousel-slide .carousel-slide-content {
+    --slide-content-width: calc((100% - 184px) / 2);
+
+    margin: 92px;
+  }
+
+  .project-gallery .carousel-slide .carousel-slide-content[data-align='justify'] {
+    --slide-content-width: auto;
+  }
+}
