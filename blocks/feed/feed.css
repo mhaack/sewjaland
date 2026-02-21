@@ -92,6 +92,10 @@
   transform: scale(1.05);
 }
 
+.feed-card[data-bento="wide"] .feed-card-figure img {
+  object-position: top center;
+}
+
 /* Title overlay */
 
 .feed-card-caption {
