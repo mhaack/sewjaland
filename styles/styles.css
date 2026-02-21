@@ -337,24 +337,24 @@ main .section.highlight {
 
 /* ── Hero section (title + description) ─────────────────────── */
 .project > main > .section:first-of-type h1 {
-  font-size: clamp(40px, 8vw, 80px);
+  font-size: clamp(60px, 8vw, 80px);
   font-family: 'Great Vibes', cursive;
   letter-spacing: -0.03em;
   line-height: 1.05;
   color: var(--text-color);
   margin-top: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 /* Accent underline on the title */
 .project > main > .section:first-of-type h1::after {
   content: '';
   display: block;
-  width: 72px;
+  width: 96px;
   height: 6px;
   background: var(--link-color);
   border-radius: 3px;
-  margin-top: 16px;
+  margin-top: 5px;
 }
 
 .project > main > .section:first-of-type p {
@@ -369,6 +369,7 @@ main .section.highlight {
 .project > main > .section:first-of-type .default-content-wrapper p:last-of-type {
   border-bottom: 1px solid rgb(255 245 235 / 20%);
   padding-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* ── Mobile: title → gallery → description → details ─────────── */
