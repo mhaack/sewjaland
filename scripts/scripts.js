@@ -10,7 +10,6 @@ import {
   loadSection,
   loadSections,
   loadCSS,
-  getMetadata,
 } from './aem.js';
 
 /**
@@ -50,7 +49,6 @@ async function loadFonts() {
  */
 function buildPhotoGallery(main) {
   if (main.parentElement && main.closest('body.project')) {
-
     const pictures = [...main.querySelectorAll('picture')].filter(
       (pic) => !pic.closest('div[class]'),
     );

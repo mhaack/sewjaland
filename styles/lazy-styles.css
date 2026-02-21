@@ -8,9 +8,9 @@ main > .section:first-of-type .default-content-wrapper {
 
 main > .section:first-of-type h1 {
   font-size: clamp(40px, 8vw, 80px);
-  font-weight: 900;
+  font-family: 'Great Vibes', cursive;
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.05;
   color: var(--text-color);
   margin-top: 10px;
   margin-bottom: 16px;
@@ -22,7 +22,7 @@ main > .section:first-of-type h1::after {
   display: block;
   width: 72px;
   height: 6px;
-  background: var(--color-bloom);
+  background: var(--link-color);
   border-radius: 3px;
   margin-top: 16px;
 }
@@ -30,10 +30,15 @@ main > .section:first-of-type h1::after {
 main > .section:first-of-type p {
   font-size: clamp(16px, 2vw, 19px);
   line-height: 1.7;
-  color: #5c3d22;
+  color: var(--text-color);
   max-width: 60ch;
   margin-top: 12px;
   margin-bottom: 0;
+}
+
+main > .section:first-of-type .default-content-wrapper p:last-of-type {
+  border-bottom: 1px solid rgb(255 245 235 / 20%);
+  padding-bottom: 20px;
 }
 
 /* ── Section spacing ─────────────────────────────────────────── */
@@ -49,19 +54,19 @@ main > .section {
   }
 }
 
-/* ── Desktop: 2-column layout for gallery + details ─────────── */
+/* ── Desktop: 3-column layout for content + gallery + details ── */
 @media (width >= 900px) {
   main > .section {
     padding-top: 56px;
     padding-bottom: 56px;
   }
 
-  /* Section that holds the photo gallery becomes a CSS grid */
+  /* Section that holds the photo gallery becomes a 3-col CSS grid */
   main > .section:has(.project-gallery-wrapper) {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: auto;
-    column-gap: 48px;
+    column-gap: 40px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -77,18 +82,34 @@ main > .section {
     padding: 0;
   }
 
-  main > .section:has(.project-gallery-wrapper) > .project-gallery-wrapper {
+  /* default content → column 1 (title + description) */
+  main > .section:has(.project-gallery-wrapper) > .default-content-wrapper {
     grid-column: 1;
     grid-row: 1;
   }
 
-  main > .section:has(.project-gallery-wrapper) > .project-details-wrapper {
+  /* gallery → column 2 (center) */
+  main > .section:has(.project-gallery-wrapper) > .project-gallery-wrapper {
     grid-column: 2;
     grid-row: 1;
   }
 
-  /* Any default content in the same section spans full width */
-  main > .section:has(.project-gallery-wrapper) > .default-content-wrapper {
-    grid-column: 1 / -1;
+  /* details → column 3 (right) */
+  main > .section:has(.project-gallery-wrapper) > .project-details-wrapper {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  /* Left-column typography for title + description */
+  main > .section:has(.project-gallery-wrapper) .default-content-wrapper h1 {
+    font-size: clamp(32px, 4vw, 56px);
+  }
+
+  main > .section:has(.project-gallery-wrapper) .default-content-wrapper p {
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-top: 12px;
+    max-width: none;
   }
 }

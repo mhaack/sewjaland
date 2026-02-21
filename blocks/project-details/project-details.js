@@ -2,12 +2,6 @@
  * Field configuration: label, emoji icon, formatter
  */
 const FIELDS = {
-  status: {
-    label: 'Status',
-    icon: '●',
-    format: (v) => v,
-    badge: true,
-  },
   date: {
     label: 'Abgeschlossen',
     icon: '◷',
@@ -18,22 +12,27 @@ const FIELDS = {
     icon: '⧗',
     format: (v) => v,
   },
+  pattern: {
+    label: 'Schnitt',
+    icon: '⧗',
+    format: (v) => v,
+  },
   fabrics: {
     label: 'Stoffe',
     icon: '◈',
     format: (v) => v,
   },
-  materials: {
-    label: 'Materialien',
-    icon: '◉',
-    format: (v) => v,
+  'fabrics spend': {
+    label: 'Stoffverbrauch',
+    icon: '◈',
+    format: (v) => ` ${v} m`,
   },
   shop: {
     label: 'Gekauft bei',
     icon: '◎',
     format: (v) => v,
   },
-  'material-cost': {
+  'material cost': {
     label: 'Materialkosten',
     icon: '◆',
     format: (v) => {
@@ -42,19 +41,6 @@ const FIELDS = {
     },
   },
 };
-
-/**
- * Returns a CSS class suffix for status badge colors
- * @param {string} value
- * @returns {string}
- */
-function statusClass(value) {
-  const v = value.toLowerCase();
-  if (['fertig', 'done', 'completed', 'abgeschlossen'].includes(v)) return 'done';
-  if (['in progress', 'in arbeit', 'wip'].includes(v)) return 'wip';
-  if (['pause', 'paused', 'on hold'].includes(v)) return 'pause';
-  return 'default';
-}
 
 /**
  * Decorates the project-details block
@@ -93,18 +79,7 @@ export default function decorate(block) {
 
     const dd = document.createElement('dd');
     dd.className = 'project-details-value';
-
-    if (meta.badge) {
-      const badge = document.createElement('span');
-      badge.className = `project-details-badge project-details-badge-${statusClass(value)}`;
-      badge.textContent = formatted;
-      dd.append(badge);
-    } else if (meta.highlight) {
-      dd.classList.add('project-details-value-highlight');
-      dd.textContent = formatted;
-    } else {
-      dd.textContent = formatted;
-    }
+    dd.textContent = formatted;
 
     grid.append(dt, dd);
   });
