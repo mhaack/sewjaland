@@ -1,3 +1,5 @@
+import { decorateIcons } from '../../scripts/aem.js';
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.project-gallery');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -15,9 +17,6 @@ function updateActiveSlide(slide) {
       }
     });
   });
-
-  const dots = block.querySelectorAll('.carousel-dot');
-  dots.forEach((dot, idx) => dot.classList.toggle('active', idx === slideIndex));
 }
 
 function showSlide(block, slideIndex = 0) {
@@ -40,10 +39,6 @@ function bindEvents(block) {
   });
   block.querySelector('.slide-next').addEventListener('click', () => {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  });
-
-  block.querySelectorAll('.carousel-dot').forEach((dot) => {
-    dot.addEventListener('click', () => showSlide(block, parseInt(dot.dataset.slideIndex, 10)));
   });
 
   const slideObserver = new IntersectionObserver((entries) => {
@@ -102,21 +97,24 @@ export default async function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
-    const slideNavButtons = document.createElement('div');
-    slideNavButtons.classList.add('carousel-navigation-buttons');
-
     const prevBtn = document.createElement('button');
     prevBtn.type = 'button';
     prevBtn.className = 'slide-prev';
     prevBtn.setAttribute('aria-label', 'Previous Slide');
+    prevBtn.innerHTML = '<span class="icon icon-arrow-left"></span>';
 
     const nextBtn = document.createElement('button');
     nextBtn.type = 'button';
     nextBtn.className = 'slide-next';
     nextBtn.setAttribute('aria-label', 'Next Slide');
+    nextBtn.innerHTML = '<span class="icon icon-arrow-right"></span>';
 
+    const slideNavButtons = document.createElement('div');
+    slideNavButtons.classList.add('carousel-navigation-buttons');
     slideNavButtons.append(prevBtn, nextBtn);
     container.append(slideNavButtons);
+
+    await decorateIcons(container);
     bindEvents(block);
   }
 }

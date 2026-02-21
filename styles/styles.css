@@ -298,6 +298,8 @@ main img {
 /* sections */
 main > .section {
   margin: 40px 0;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 main > .section > div {
@@ -322,4 +324,136 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+@media (width >= 600px) {
+  main > .section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+/* ── Project detail page ─────────────────────────────────────── */
+
+/* ── Hero section (title + description) ─────────────────────── */
+.project > main > .section:first-of-type h1 {
+  font-size: clamp(40px, 8vw, 80px);
+  font-family: 'Great Vibes', cursive;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-color);
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+
+/* Accent underline on the title */
+.project > main > .section:first-of-type h1::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 6px;
+  background: var(--link-color);
+  border-radius: 3px;
+  margin-top: 16px;
+}
+
+.project > main > .section:first-of-type p {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.7;
+  color: var(--text-color);
+  max-width: 60ch;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.project > main > .section:first-of-type .default-content-wrapper p:last-of-type {
+  border-bottom: 1px solid rgb(255 245 235 / 20%);
+  padding-bottom: 20px;
+}
+
+/* ── Mobile: title → gallery → description → details ─────────── */
+.project > main > .section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Remove wrapper-level padding/margin — section now owns it */
+.project > main > .section > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dissolve the wrapper so h1 and p become direct flex items */
+.project > main > .section > .default-content-wrapper {
+  display: contents;
+}
+
+.project > main > .section > .default-content-wrapper > h1 { order: 1; }
+.project > main > .section > .project-gallery-wrapper { order: 2; }
+/* stylelint-disable-next-line no-descending-specificity */
+.project > main > .section > .default-content-wrapper > p { order: 3; }
+.project > main > .section > .project-details-wrapper { order: 4; }
+
+/* ── Desktop: 3-column layout for content + gallery + details ── */
+@media (width >= 900px) {
+  main > .section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  /* Project page section becomes a 3-col CSS grid */
+  .project > main > .section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 32px;
+    box-sizing: border-box;
+    align-items: start;
+  }
+
+  /* Reset per-wrapper constraints — section handles max-width now */
+  .project > main > .section > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Restore wrapper as a normal block in column 1 */
+  .project > main > .section > .default-content-wrapper {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* gallery → column 2 (center) */
+  .project > main > .section > .project-gallery-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* details → column 3 (right) */
+  .project > main > .section > .project-details-wrapper {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  /* Left-column typography for title + description */
+  .project > main > .section .default-content-wrapper h1 {
+    font-size: clamp(32px, 4vw, 56px);
+  }
+
+  .project > main > .section .default-content-wrapper p {
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-top: 12px;
+    max-width: none;
+  }
 }

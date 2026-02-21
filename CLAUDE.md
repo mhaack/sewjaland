@@ -41,10 +41,11 @@ The `body.project` class is set by the CMS template metadata. To test locally wi
 
 Defined in `styles/styles.css` as CSS custom properties:
 
-- **Theme**: dark background (`#000`), warm text (`#fff5eb`), `--link-color: #e8285a` (bloom)
-- **Spring palette**: `--color-bloom` (pink), `--color-leaf` (green), `--color-sun` (yellow), `--color-sky` (blue) — used for cycling accent colors in `project-details`
+- **Theme**: dark background (`#000`), warm text (`#fff5eb`), `--link-color: #0a8640` (green)
 - **Fonts**: Roboto body, Roboto Condensed headings
 - **Breakpoints**: 600px (tablet), 900px (desktop), 1200px (wide) — mobile-first
+
+Project detail page styles (3-column desktop grid, mobile reorder, hero typography) live in `styles/styles.css`. `styles/lazy-styles.css` is intentionally empty.
 
 ## Button Authoring Convention
 
