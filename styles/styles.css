@@ -333,10 +333,8 @@ main .section.highlight {
   }
 }
 
-/* ── Project detail page ─────────────────────────────────────── */
-
 /* ── Hero section (title + description) ─────────────────────── */
-.project > main > .section:first-of-type h1 {
+main > .section:first-of-type h1 {
   font-size: clamp(60px, 8vw, 80px);
   font-family: 'Great Vibes', cursive;
   letter-spacing: -0.03em;
@@ -347,7 +345,7 @@ main .section.highlight {
 }
 
 /* Accent underline on the title */
-.project > main > .section:first-of-type h1::after {
+main > .section:first-of-type h1::after {
   content: '';
   display: block;
   width: 96px;
@@ -405,6 +403,10 @@ main .section.highlight {
     padding-bottom: 56px;
   }
 
+  main > .section .default-content-wrapper h1 {
+    font-size: clamp(32px, 4vw, 56px);
+  }
+
   /* Project page section becomes a 3-col CSS grid */
   .project > main > .section {
     display: grid;
@@ -443,11 +445,6 @@ main .section.highlight {
   .project > main > .section > .project-details-wrapper {
     grid-column: 3;
     grid-row: 1;
-  }
-
-  /* Left-column typography for title + description */
-  .project > main > .section .default-content-wrapper h1 {
-    font-size: clamp(32px, 4vw, 56px);
   }
 
   .project > main > .section .default-content-wrapper p {
