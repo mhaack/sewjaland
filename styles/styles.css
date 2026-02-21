@@ -20,8 +20,8 @@
   --link-hover-color: #26ac60;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: Montserrat, montserrat-fallback, sans-serif;
+  --heading-font-family:Montserrat, montserrat-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -42,13 +42,7 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
+  font-family: montserrat-fallback;
   size-adjust: 99.529%;
   src: local('Arial');
 }
@@ -407,11 +401,17 @@ main > .section:first-of-type h1::after {
     font-size: clamp(32px, 4vw, 56px);
   }
 
-  /* Project page section becomes a 3-col CSS grid */
-  .project > main > .section {
+  main > .section .default-content-wrapper h2 {
+    font-size: var(--heading-font-size-xs);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* Main becomes the 3-col grid; sections fill named columns */
+  .project > main {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto;
     column-gap: 40px;
     max-width: 1200px;
     margin-left: auto;
@@ -421,29 +421,51 @@ main > .section:first-of-type h1::after {
     align-items: start;
   }
 
-  /* Reset per-wrapper constraints — section handles max-width now */
+  /* Strip horizontal padding/margin from sections — main owns it now */
+  .project > main > .section {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+  }
+
+  /* Gallery section: spans left 2 columns, 2-col internal sub-grid */
+  .project > main > .project-gallery-container {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 40px;
+    align-items: start;
+  }
+
+  /* Details section: right column, same row as gallery */
+  .project > main > .project-details-container {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  /* Reset per-wrapper constraints */
   .project > main > .section > div {
     max-width: none;
     margin: 0;
     padding: 0;
   }
 
-  /* Restore wrapper as a normal block in column 1 */
+  /* Restore default-content-wrapper as a normal block */
   .project > main > .section > .default-content-wrapper {
     display: block;
+  }
+
+  /* Text → column 1 of gallery section */
+  .project > main > .project-gallery-container > .default-content-wrapper {
     grid-column: 1;
     grid-row: 1;
   }
 
-  /* gallery → column 2 (center) */
-  .project > main > .section > .project-gallery-wrapper {
+  /* Gallery → column 2 of gallery section */
+  .project > main > .project-gallery-container > .project-gallery-wrapper {
     grid-column: 2;
-    grid-row: 1;
-  }
-
-  /* details → column 3 (right) */
-  .project > main > .section > .project-details-wrapper {
-    grid-column: 3;
     grid-row: 1;
   }
 
@@ -453,5 +475,9 @@ main > .section:first-of-type h1::after {
     color: var(--text-color);
     margin-top: 12px;
     max-width: none;
+  }
+
+  .project > main > .project-details-container h2 {
+    margin: 0 0 1.5rem;
   }
 }
