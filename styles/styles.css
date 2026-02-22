@@ -406,9 +406,6 @@ main > .section .default-content-wrapper h2 {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 32px;
-    box-sizing: border-box;
-    align-items: start;
   }
 
   /* Strip horizontal padding/margin from sections — main owns it now */

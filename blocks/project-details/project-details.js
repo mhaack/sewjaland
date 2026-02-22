@@ -1,40 +1,33 @@
 /**
- * Field configuration: label, emoji icon, formatter
+ * Field configuration: label, formatter
  */
 const FIELDS = {
   date: {
-    label: 'Abgeschlossen',
-    icon: '◷',
+    label: 'Datum',
     format: (v) => v,
   },
   duration: {
-    label: 'Dauer',
-    icon: '⧗',
+    label: 'Nähzeit',
     format: (v) => v,
   },
   pattern: {
     label: 'Schnitt',
-    icon: '⧗',
     format: (v) => v,
   },
   fabrics: {
     label: 'Stoffe',
-    icon: '◈',
     format: (v) => v,
   },
   'fabrics spend': {
-    label: 'Stoffverbrauch',
-    icon: '◈',
+    label: 'Stoff- verbrauch',
     format: (v) => ` ${v} m`,
   },
   shop: {
     label: 'Gekauft bei',
-    icon: '◎',
     format: (v) => v,
   },
   'material cost': {
-    label: 'Materialkosten',
-    icon: '◆',
+    label: 'Material- kosten',
     format: (v) => {
       const cost = parseFloat(v);
       return Number.isNaN(cost) ? v : `${cost.toFixed(2)} €`;
@@ -69,13 +62,7 @@ export default function decorate(block) {
 
     const dt = document.createElement('dt');
     dt.className = 'project-details-label';
-
-    const icon = document.createElement('span');
-    icon.className = 'project-details-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = meta.icon;
-
-    dt.append(icon, meta.label);
+    dt.append(meta.label);
 
     const dd = document.createElement('dd');
     dd.className = 'project-details-value';
