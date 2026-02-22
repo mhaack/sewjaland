@@ -1,4 +1,3 @@
-/* Grid — mobile first */
 .feed {
   margin-top: 20px;
 }
@@ -24,13 +23,26 @@
     grid-auto-rows: 300px;
   }
 
-  .feed-card[data-bento="large"] { grid-column: span 2; grid-row: span 2; }
-  .feed-card[data-bento="tall"]  { grid-column: span 1; grid-row: span 2; }
-  .feed-card[data-bento="small"] { grid-column: span 1; grid-row: span 1; }
-  .feed-card[data-bento="wide"]  { grid-column: span 2; grid-row: span 1; }
-}
+  .feed-card[data-bento="large"] {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
 
-/* Card */
+  .feed-card[data-bento="tall"] {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .feed-card[data-bento="small"] {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .feed-card[data-bento="wide"] {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
 
 .feed-card {
   aspect-ratio: 4 / 5;
@@ -63,8 +75,6 @@
   text-decoration: none;
 }
 
-/* Image */
-
 .feed-card-figure {
   position: relative;
   margin: 0;
@@ -95,8 +105,6 @@
 .feed-card[data-bento="wide"] .feed-card-figure img {
   object-position: top center;
 }
-
-/* Title overlay */
 
 .feed-card-caption {
   position: absolute;

@@ -1,17 +1,17 @@
 import ffetch from '../../scripts/ffetch.js';
+import { decorateIcons } from '../../scripts/aem.js';
 
 function parseDetails(details) {
-  const result = {};
-  if (!Array.isArray(details)) return result;
-  for (const item of details) {
+  if (!Array.isArray(details)) return {};
+  return details.reduce((acc, item) => {
     const nl = item.indexOf('\n');
     if (nl > -1) {
       const key = item.slice(0, nl).trim().toLowerCase();
       const value = item.slice(nl + 1).trim();
-      result[key] = value;
+      acc[key] = value;
     }
-  }
-  return result;
+    return acc;
+  }, {});
 }
 
 function parseNumber(str) {
@@ -40,30 +40,35 @@ export default async function decorate(block) {
     entries = entries.filter((e) => e.path.includes(`/projects/${year}/`));
   }
 
-  let totalCost = 0;
-  let totalFabric = 0;
-  let totalDuration = 0;
-
-  for (const entry of entries) {
+  const totals = entries.reduce((acc, entry) => {
     const d = parseDetails(entry.details);
-    totalCost += parseNumber(d['material cost'] ?? d['material-cost']);
-    totalFabric += parseNumber(d['fabrics spend']);
-    totalDuration += parseDuration(d.duration);
-  }
+    acc.totalCost += parseNumber(d['material cost'] ?? d['material-cost']);
+    acc.totalFabric += parseNumber(d['fabrics spend']);
+    acc.totalDuration += parseDuration(d.duration);
+    return acc;
+  }, { totalCost: 0, totalFabric: 0, totalDuration: 0 });
+
+  const { totalCost, totalFabric, totalDuration } = totals;
 
   const stats = [
-    { value: entries.length, label: 'Projekte' },
-    { value: `${formatNumber(totalCost, 2)} €`, label: 'Gesamtausgaben' },
-    { value: `${formatNumber(totalFabric, 2)} m`, label: 'Stoffverbrauch' },
-    { value: `${formatNumber(totalDuration)} h`, label: 'Nähzeit' },
+    { icon: 'scissors', value: entries.length, label: 'Projekte' },
+    { icon: 'euro', value: `${formatNumber(totalCost, 2)} €`, label: 'Gesamtausgaben' },
+    { icon: 'ruler', value: `${formatNumber(totalFabric, 2)} m`, label: 'Stoffverbrauch' },
+    { icon: 'clock', value: `${formatNumber(totalDuration)} h`, label: 'Nähzeit' },
   ];
 
   const ul = document.createElement('ul');
   ul.className = 'stats-list';
 
-  for (const stat of stats) {
+  stats.forEach((stat) => {
     const li = document.createElement('li');
     li.className = 'stats-item';
+
+    const valueRow = document.createElement('div');
+    valueRow.className = 'stats-value-row';
+
+    const iconEl = document.createElement('span');
+    iconEl.className = `icon icon-${stat.icon} stats-icon`;
 
     const valEl = document.createElement('span');
     valEl.className = 'stats-value';
@@ -73,10 +78,12 @@ export default async function decorate(block) {
     labelEl.className = 'stats-label';
     labelEl.textContent = stat.label;
 
-    li.append(valEl, labelEl);
-    ul.appendChild(li);
-  }
+    valueRow.append(iconEl, valEl);
+    li.append(valueRow, labelEl);
+    ul.append(li);
+  });
 
   block.textContent = '';
   block.appendChild(ul);
+  decorateIcons(block);
 }
